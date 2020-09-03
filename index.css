@@ -1,0 +1,20 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+}
+
+#board > .row {
+  display: flex;
+  flex-direction: row;
+}
+
+#board > .row > .cell {
+  width: 1em;
+  height: 1em;
+  border: 1px solid lightgray;
+}
