@@ -23,23 +23,31 @@ export default class Snake extends Game {
   }
 
   step() {
-    const h = this.moveHead()
-    this.body.unshift(h)
-    const a = this.apples.findIndex(a => a.x === h.x && a.y === h.y)
-    if (a >= 0) this.apples.splice(a, 1)
+    const head = this.newHead()
+    this.body.unshift(head)
+    const a = this.appleAt(head)
+    if (a >= 0) this.eat(a)
     else this.body.pop()
     this.draw()
   }
 
-  moveHead() {
+  newHead() {
     const h = {...this.body[0]}
     h.x += this.dir.x
-    if (h.x >= this.board.cols) h.x = 0
+    if (h.x > this.board.cols) h.x = 0
     if (h.x < 0) h.x = this.board.cols
     h.y += this.dir.y
-    if (h.y >= this.board.rows) h.y = 0
+    if (h.y > this.board.rows) h.y = 0
     if (h.y < 0) h.y = this.board.rows
     return h
+  }
+
+  appleAt(p) {
+    return this.apples.findIndex(a => a.x === p.x && a.y === p.y)
+  }
+
+  eat(i) {
+    this.apples.splice(i, 1)
   }
 
   draw() {
