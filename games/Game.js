@@ -5,7 +5,7 @@ export default class Game {
 
   step() {}
 
-  start(speed = 300) {
+  start(speed = 500) {
     this.timer = setInterval(() => {
       this.board.clear()
       this.step()

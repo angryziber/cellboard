@@ -5,6 +5,8 @@ export default class Board {
   }
 
   generateCells(cols = innerWidth / this.size, rows = innerHeight / this.size - 1) {
+    this.cols = Math.floor(cols)
+    this.rows = Math.floor(rows)
     this.cells = []
     let row
     for (let y = 0; y < rows; y++) {

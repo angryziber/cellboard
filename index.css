@@ -22,3 +22,7 @@ html, body {
 #board > .row > .cell.filled {
   background-color: black;
 }
+
+#board > .row > .cell.apple {
+  background-color: red;
+}
