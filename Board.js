@@ -11,17 +11,26 @@ export default class Board {
       for (let x = 0; x < cols; x++) {
         if (!this.cells[y]) {
           this.cells[y] = []
-          row = this.create(this.board, 'row')
+          row = this.createElement(this.board, 'row')
         }
-        this.cells[y][x] = this.create(row, 'cell')
+        this.cells[y][x] = this.createElement(row, 'cell')
       }
     }
+    return this
   }
 
-  create(parent, cls) {
+  createElement(parent, cls) {
     const cell = document.createElement('div')
     cell.classList.add(cls)
     parent.appendChild(cell)
     return cell
+  }
+
+  clear() {
+    this.cells.forEach(row => row.forEach(cell => cell.setAttribute('class', 'cell')))
+  }
+
+  set(pos, cls) {
+    this.cells[pos.y][pos.x].classList.add(cls)
   }
 }

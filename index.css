@@ -18,3 +18,7 @@ html, body {
   height: 1em;
   border: 1px solid lightgray;
 }
+
+#board > .row > .cell.filled {
+  background-color: black;
+}
