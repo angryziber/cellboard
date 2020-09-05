@@ -56,7 +56,7 @@ export default class Snake extends Game {
   }
 
   drawSnake() {
-    this.snake.forEach(h => this.board.set(h, 'filled'))
+    this.snake.forEach(h => this.board.set(h, 'snake'))
   }
 
   drawApples() {
