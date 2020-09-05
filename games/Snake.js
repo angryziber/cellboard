@@ -3,14 +3,14 @@ import {v} from '../Vector.js'
 
 export default class Snake extends Game {
   body = this.randomPositions(1)
-  dir = v(1, 0)
+  direction = v(1, 0)
 
   keys = addEventListener('keydown', e => {
     switch (e.code) {
-      case 'ArrowLeft': return this.dir = v(-1, 0)
-      case 'ArrowRight': return this.dir = v(1, 0)
-      case 'ArrowUp': return this.dir = v(0, -1)
-      case 'ArrowDown': return this.dir = v(0, 1)
+      case 'ArrowLeft': return this.direction = v(-1, 0)
+      case 'ArrowRight': return this.direction = v(1, 0)
+      case 'ArrowUp': return this.direction = v(0, -1)
+      case 'ArrowDown': return this.direction = v(0, 1)
     }
   })
 
@@ -34,7 +34,7 @@ export default class Snake extends Game {
   }
 
   newHead() {
-    return this.move(this.body[0].clone(), this.dir)
+    return this.move(this.body[0].clone(), this.direction)
   }
 
   move(p, by) {
