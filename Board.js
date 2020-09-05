@@ -18,14 +18,15 @@ export default class Board {
         this.cells[y][x] = this.createElement(row, 'cell')
       }
     }
+    this.score = this.createElement(this.board, 'score')
     return this
   }
 
   createElement(parent, cls) {
-    const cell = document.createElement('div')
-    cell.classList.add(cls)
-    parent.appendChild(cell)
-    return cell
+    const el = document.createElement('div')
+    el.classList.add(cls)
+    parent.appendChild(el)
+    return el
   }
 
   clear() {
@@ -34,5 +35,9 @@ export default class Board {
 
   set(pos, cls) {
     this.cells[pos.y][pos.x].classList.add(cls)
+  }
+
+  showScore(score) {
+    this.score.innerText = score
   }
 }

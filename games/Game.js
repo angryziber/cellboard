@@ -4,6 +4,8 @@ export default class Game {
     this.speed = speed
   }
 
+  score = 0
+
   commonKeys = addEventListener('keydown', e => {
     switch (e.code) {
       case 'Space': return this.timer ? this.stop() : this.start()
@@ -18,6 +20,7 @@ export default class Game {
     this.timer = setTimeout(() => {
       this.board.clear()
       this.step()
+      this.board.showScore(this.score)
       this.start()
     }, this.speed)
   }
