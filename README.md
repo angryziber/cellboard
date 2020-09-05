@@ -5,8 +5,9 @@
 A simple game board that can be used to practice implementing many cell-based games, e.g.
 
 * Snake (implemented)
-* Game of Life
 * Tetris
+* Conway's Game of Life (implemented)
+* Langton's Ant
 * etc
 * **Pull requests with game implementations are welcome!**
 

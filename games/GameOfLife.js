@@ -19,9 +19,7 @@ export default class GameOfLife extends Game {
         if (a && (n === 2 || n === 3) || !a && n === 3) next.push(c)
       }
     }
-    this.alive = next
-
-    this.drawLiveCells()
+    (this.alive = next).forEach(c => this.board.set(c, 'filled'))
   }
 
   isAlive(c) {
@@ -34,9 +32,5 @@ export default class GameOfLife extends Game {
     return n(c.x - 1, c.y - 1) + n(c.x, c.y - 1) + n(c.x + 1, c.y - 1) +
            n(c.x - 1, c.y) + n(c.x + 1, c.y) +
            n(c.x - 1, c.y + 1) + n(c.x, c.y + 1) + n(c.x + 1, c.y + 1)
-  }
-
-  drawLiveCells() {
-    this.alive.forEach(c => this.board.set(c, 'filled'))
   }
 }
