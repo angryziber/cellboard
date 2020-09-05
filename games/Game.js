@@ -1,3 +1,5 @@
+import v from '../v.js'
+
 export default class Game {
   constructor(board, speed = 80) {
     this.board = board
@@ -32,6 +34,6 @@ export default class Game {
 
   randomPositions(n) {
     return Array(n).fill(0).map(() =>
-      ({x: Math.floor(Math.random() * this.board.cols), y: Math.floor(Math.random() * this.board.rows)}))
+      (v(Math.floor(Math.random() * this.board.cols), Math.floor(Math.random() * this.board.rows))))
   }
 }

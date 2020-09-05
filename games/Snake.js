@@ -1,15 +1,16 @@
 import Game from './Game.js'
+import v from '../v.js'
 
 export default class Snake extends Game {
   body = this.randomPositions(1)
-  dir = {x: 1, y: 0}
+  dir = v(1, 0)
 
   keys = addEventListener('keydown', e => {
     switch (e.code) {
-      case 'ArrowLeft': return this.dir = {x: -1, y: 0}
-      case 'ArrowRight': return this.dir = {x: 1, y: 0}
-      case 'ArrowUp': return this.dir = {x: 0, y: -1}
-      case 'ArrowDown': return this.dir = {x: 0, y: 1}
+      case 'ArrowLeft': return this.dir = v(-1, 0)
+      case 'ArrowRight': return this.dir = v(1, 0)
+      case 'ArrowUp': return this.dir = v(0, -1)
+      case 'ArrowDown': return this.dir = v(0, 1)
     }
   })
 
@@ -19,7 +20,7 @@ export default class Snake extends Game {
     this.apples.forEach(a => {
       const rx = Math.random()
       const ry = Math.random()
-      this.move(a, {x: rx > 0.9 ? 1 : rx < 0.1 ? -1 : 0, y: ry > 0.9 ? 1 : ry < 0.1 ? -1 : 0})
+      this.move(a, v(rx > 0.9 ? 1 : rx < 0.1 ? -1 : 0, ry > 0.9 ? 1 : ry < 0.1 ? -1 : 0))
     })
   }
 
