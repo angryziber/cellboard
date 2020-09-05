@@ -30,7 +30,9 @@ export default class Board {
   }
 
   clear() {
-    this.cells.forEach(row => row.forEach(cell => cell.setAttribute('class', 'cell')))
+    this.cells.forEach(row => row.forEach(cell => {
+      if (cell.classList.length > 1) cell.classList.value = 'cell'
+    }))
   }
 
   set(pos, cls) {
