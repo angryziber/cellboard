@@ -1,10 +1,10 @@
 export default class Board {
-  constructor(board, size = 18) {
+  constructor(board, cellSize = 18) {
     this.board = board
-    this.size = size
+    this.cellSize = cellSize
   }
 
-  generateCells(cols = innerWidth / this.size, rows = innerHeight / this.size - 1) {
+  generateCells(cols = innerWidth / this.cellSize, rows = innerHeight / this.cellSize - 1) {
     this.cols = Math.floor(cols)
     this.rows = Math.floor(rows)
     this.cells = []
