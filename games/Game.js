@@ -1,4 +1,5 @@
 import {v} from '../Vector.js'
+const {random, floor} = Math
 
 export default class Game {
   constructor(board, speed = 80) {
@@ -33,8 +34,8 @@ export default class Game {
   }
 
   randomPositions(n) {
-    return Array(n).fill(0).map(() =>
-      (v(Math.floor(Math.random() * this.board.cols), Math.floor(Math.random() * this.board.rows))))
+    return Array(n).fill({}).map(() =>
+      (v(floor(random() * this.board.cols), floor(random() * this.board.rows))))
   }
 
   wrapBounds(p) {

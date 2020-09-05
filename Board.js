@@ -1,13 +1,15 @@
+const {floor} = Math
+
 export default class Board {
   constructor(board, cellSize = 18) {
     this.board = board
     this.cellSize = cellSize
-    this.generateCells(Math.floor(innerWidth / this.cellSize), Math.floor(innerHeight / this.cellSize - 1))
+    this.cols = floor(window.innerWidth / this.cellSize)
+    this.rows = floor(window.innerHeight / this.cellSize - 1)
+    this.generateCells(this.cols, this.rows)
   }
 
   generateCells(cols, rows) {
-    this.cols = Math.floor(cols)
-    this.rows = Math.floor(rows)
     this.cells = []
     let row
     for (let y = 0; y < rows; y++) {
@@ -20,7 +22,6 @@ export default class Board {
       }
     }
     this.score = this.createElement(this.board, 'score')
-    return this
   }
 
   createElement(parent, cls) {
