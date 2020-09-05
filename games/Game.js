@@ -1,18 +1,20 @@
 export default class Game {
-  constructor(board) {
+  constructor(board, speed = 80) {
     this.board = board
+    this.speed = speed
   }
 
   step() {}
 
-  start(speed = 500) {
-    this.timer = setInterval(() => {
+  start() {
+    this.timer = setTimeout(() => {
       this.board.clear()
       this.step()
-    }, speed)
+      this.start()
+    }, this.speed)
   }
 
   stop() {
-    clearInterval(this.timer)
+    clearTimeout(this.timer)
   }
 }

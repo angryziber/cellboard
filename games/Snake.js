@@ -10,6 +10,9 @@ export default class Snake extends Game {
       case 'ArrowRight': return this.dir = {x: 1, y: 0}
       case 'ArrowUp': return this.dir = {x: 0, y: -1}
       case 'ArrowDown': return this.dir = {x: 0, y: 1}
+      case 'Space': return this.speed = this.speed ? 0 : 100
+      case 'Period': return this.speed -= 10
+      case 'Comma': return this.speed += 10
     }
   })
 
