@@ -1,7 +1,7 @@
 import Game from './Game.js'
 
 export default class Snake extends Game {
-  body = [{x: 10, y: 10}, {x: 9, y: 10}, {x: 8, y: 10}]
+  body = [{x: 10, y: 10}]
   dir = {x: 1, y: 0}
 
   keys = addEventListener('keydown', e => {
