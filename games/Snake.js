@@ -3,6 +3,7 @@ import {v} from '../core/Vector.js'
 const {random} = Math
 
 export default class Snake extends Game {
+  help = 'Use arrow keys to control the snake'
   snake = this.randomPositions(1)
   direction = v(1, 0)
   apples = this.randomPositions(30)

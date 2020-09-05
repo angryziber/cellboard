@@ -2,6 +2,7 @@ import Game from '../core/Game.js'
 import {v} from '../core/Vector.js'
 
 export default class GameOfLife extends Game {
+  help = 'Draw alive cells using the mouse'
   alive = this.randomPositions(100)
   drawing = false
 
