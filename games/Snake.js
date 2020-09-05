@@ -47,7 +47,7 @@ export default class Snake extends Game {
 
   eat(i) {
     this.apples.splice(i, 1)
-    this.score += 10
+    this.addScore(10)
   }
 
   draw() {

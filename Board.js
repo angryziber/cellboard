@@ -34,7 +34,7 @@ export default class Board {
     this.cells[pos.y]?.[pos.x]?.classList.add(cls)
   }
 
-  showScore(score) {
+  updateScore(score) {
     this.score.innerText = score
   }
 }

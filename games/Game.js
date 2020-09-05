@@ -6,6 +6,7 @@ export default class Game {
 
   constructor(board, speed = 80) {
     this.board = board
+    this.board.updateScore(this.score)
     this.speed = speed
   }
 
@@ -23,7 +24,6 @@ export default class Game {
     this.timer = setTimeout(() => {
       this.board.clear()
       this.step()
-      this.board.showScore(this.score)
       this.start()
     }, this.speed)
   }
@@ -43,5 +43,10 @@ export default class Game {
     if (p.y > this.board.rows) p.y = 0
     else if (p.y < 0) p.y = this.board.rows
     return p
+  }
+
+  addScore(inc) {
+    this.score += inc
+    this.board.updateScore(this.score)
   }
 }
