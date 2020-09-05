@@ -30,6 +30,7 @@ export default class Game {
       this.gameTurn()
       this.start()
     }, this.speed)
+    return this
   }
 
   stop() {

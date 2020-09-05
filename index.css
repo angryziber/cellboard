@@ -4,10 +4,32 @@ html, body {
   font-family: sans-serif;
 }
 
-#board {
-  height: 100%;
+body, select {
+  font-size: 18px;
+}
+
+body {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  margin: 0.5rem;
+}
+
+header .help {
+  color: gray;
+  float: right;
+}
+
+#board {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  --border: 1px solid lightgray;
+  border-top: var(--border);
+  border-left: var(--border);
 }
 
 #board > .row {
@@ -16,9 +38,11 @@ html, body {
 }
 
 #board > .row > .cell {
-  width: 1em;
-  height: 1em;
-  border: 1px solid lightgray;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border-bottom: var(--border);
+  border-right: var(--border);
 }
 
 #board > .row > .cell.filled {

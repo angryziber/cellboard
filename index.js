@@ -1,5 +1,21 @@
 import Board from './core/Board.js'
 import Snake from './games/Snake.js'
 
+const games = [Snake]
+
 const board = new Board(document.getElementById('board'))
-new Snake(board).start()
+
+const gameSelect = document.getElementById('game')
+games.forEach(game => {
+  gameSelect.appendChild(document.createElement('option')).innerText = game.name
+})
+
+let currentGame
+gameSelect.onchange = () => startGame(games[gameSelect.selectedIndex])
+
+function startGame(game) {
+  if (currentGame) currentGame.stop()
+  currentGame = new game(board).start()
+}
+
+startGame(games[0])
