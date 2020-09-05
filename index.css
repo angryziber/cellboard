@@ -24,10 +24,6 @@ html, body {
   background-color: black;
 }
 
-#board > .row > .cell.apple {
-  background-color: red;
-}
-
 #board > .score {
   position: absolute;
   top: 1em;

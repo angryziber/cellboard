@@ -1,0 +1,7 @@
+#board > .row > .cell.snake {
+  background-color: black;
+}
+
+#board > .row > .cell.apple {
+  background-color: red;
+}

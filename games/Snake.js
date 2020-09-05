@@ -1,5 +1,5 @@
-import Game from './Game.js'
-import {v} from '../Vector.js'
+import Game from '../core/Game.js'
+import {v} from '../core/Vector.js'
 
 export default class Snake extends Game {
   snake = this.randomPositions(1)

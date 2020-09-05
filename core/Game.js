@@ -1,4 +1,4 @@
-import {v} from '../Vector.js'
+import {v} from './Vector.js'
 const {random, floor} = Math
 
 /**
