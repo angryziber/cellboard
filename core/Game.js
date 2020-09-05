@@ -41,14 +41,6 @@ export default class Game {
     return Array.from(Array(n), () => v(floor(random() * this.board.cols), floor(random() * this.board.rows)))
   }
 
-  wrapBounds(p) {
-    if (p.x > this.board.cols) p.x = 0
-    else if (p.x < 0) p.x = this.board.cols
-    if (p.y > this.board.rows) p.y = 0
-    else if (p.y < 0) p.y = this.board.rows
-    return p
-  }
-
   addScore(inc) {
     this.score += inc
     this.board.updateScore(this.score)

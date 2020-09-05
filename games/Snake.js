@@ -25,7 +25,7 @@ export default class Snake extends Game {
   moveSnake() {
     const head = this.newHead()
     this.snake.unshift(head)
-    const a = this.appleAt(head)
+    const a = this.appleIndexAt(head)
     if (a >= 0) this.eatApple(a)
     else this.snake.pop()
   }
@@ -35,10 +35,10 @@ export default class Snake extends Game {
   }
 
   move(p, by) {
-    return this.wrapBounds(p.add(by))
+    return this.board.wrapBounds(p.add(by))
   }
 
-  appleAt(p) {
+  appleIndexAt(p) {
     return this.apples.findIndex(a => a.equals(p))
   }
 

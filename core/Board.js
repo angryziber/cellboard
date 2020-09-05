@@ -1,18 +1,16 @@
 const {floor} = Math
 
 export default class Board {
-  constructor(board, cellSize = 18) {
-    this.board = board
-    this.cellSize = cellSize
-    this.cols = floor(window.innerWidth / this.cellSize)
-    this.rows = floor(window.innerHeight / this.cellSize - 1)
-    this.generateCells(this.cols, this.rows)
-    this.score = this.addElement(this.board, 'score')
+  constructor(target, cellSize = 18) {
+    this.cols = floor(target.clientWidth / cellSize)
+    this.rows = floor(target.clientHeight / cellSize - 1)
+    this.generateCells(target, this.cols, this.rows)
+    this.score = this.addElement(target, 'score')
   }
 
-  generateCells(cols, rows) {
+  generateCells(target, cols, rows) {
     this.cells = Array.from(Array(rows), (_, y) => {
-      const row = this.addElement(this.board, 'row')
+      const row = this.addElement(target, 'row')
       return Array.from(Array(cols), (_, x) => this.addElement(row, 'cell'))
     })
   }
@@ -31,6 +29,14 @@ export default class Board {
 
   set(pos, cls) {
     this.cells[pos.y]?.[pos.x]?.classList.add(cls)
+  }
+
+  wrapBounds(pos) {
+    if (pos.x >= this.cols) pos.x = 0
+    else if (pos.x < 0) pos.x = this.cols
+    if (pos.y >= this.rows) pos.y = 0
+    else if (pos.y < 0) pos.y = this.rows
+    return pos
   }
 
   updateScore(score) {
