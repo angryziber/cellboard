@@ -13,14 +13,7 @@ export default class Snake extends Game {
     }
   })
 
-  apples = this.generateApples(30)
-
-  generateApples(n) {
-    const apples = Array(n)
-    for (let i = 0; i < n; i++)
-      apples[i] = {x: Math.floor(Math.random() * this.board.cols), y: Math.floor(Math.random() * this.board.rows)}
-    return apples
-  }
+  apples = this.randomPoints(30)
 
   moveApples() {
     this.apples.forEach(a => {
@@ -40,18 +33,17 @@ export default class Snake extends Game {
   }
 
   newHead() {
-    const h = {...this.body[0]}
-    this.move(h, this.dir)
-    return h
+    return this.move({...this.body[0]}, this.dir)
   }
 
-  move(h, by) {
-    h.x += by.x
-    if (h.x > this.board.cols) h.x = 0
-    if (h.x < 0) h.x = this.board.cols
-    h.y += by.y
-    if (h.y > this.board.rows) h.y = 0
-    if (h.y < 0) h.y = this.board.rows
+  move(p, by) {
+    p.x += by.x
+    if (p.x > this.board.cols) p.x = 0
+    if (p.x < 0) p.x = this.board.cols
+    p.y += by.y
+    if (p.y > this.board.rows) p.y = 0
+    if (p.y < 0) p.y = this.board.rows
+    return p
   }
 
   appleAt(p) {
