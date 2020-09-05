@@ -8,9 +8,13 @@ export default class Vector {
     this.y = y
   }
 
-  add(other) {
-    this.x += other.x
-    this.y += other.y
+  equals(that) {
+    return this.x === that.x && this.y === that.y
+  }
+
+  add(that) {
+    this.x += that.x
+    this.y += that.y
     return this
   }
 

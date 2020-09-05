@@ -42,7 +42,7 @@ export default class Snake extends Game {
   }
 
   appleAt(p) {
-    return this.apples.findIndex(a => a.x === p.x && a.y === p.y)
+    return this.apples.findIndex(a => a.equals(p))
   }
 
   eat(i) {
