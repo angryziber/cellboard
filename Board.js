@@ -34,7 +34,7 @@ export default class Board {
   }
 
   set(pos, cls) {
-    this.cells[pos.y][pos.x].classList.add(cls)
+    this.cells[pos.y]?.[pos.x]?.classList.add(cls)
   }
 
   showScore(score) {
