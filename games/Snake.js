@@ -1,7 +1,7 @@
 import Game from './Game.js'
 
 export default class Snake extends Game {
-  body = [{x: 10, y: 10}]
+  body = this.randomPositions(1)
   dir = {x: 1, y: 0}
 
   keys = addEventListener('keydown', e => {
@@ -13,7 +13,7 @@ export default class Snake extends Game {
     }
   })
 
-  apples = this.randomPoints(30)
+  apples = this.randomPositions(30)
 
   moveApples() {
     this.apples.forEach(a => {

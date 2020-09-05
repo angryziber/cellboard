@@ -30,10 +30,8 @@ export default class Game {
     this.timer = undefined
   }
 
-  randomPoints(n) {
-    const apples = Array(n)
-    for (let i = 0; i < n; i++)
-      apples[i] = {x: Math.floor(Math.random() * this.board.cols), y: Math.floor(Math.random() * this.board.rows)}
-    return apples
+  randomPositions(n) {
+    return Array(n).fill(0).map(() =>
+      ({x: Math.floor(Math.random() * this.board.cols), y: Math.floor(Math.random() * this.board.rows)}))
   }
 }
