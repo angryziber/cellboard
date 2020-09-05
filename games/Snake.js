@@ -1,5 +1,5 @@
 import Game from './Game.js'
-import v from '../v.js'
+import {v} from '../Vector.js'
 
 export default class Snake extends Game {
   body = this.randomPositions(1)
@@ -34,17 +34,11 @@ export default class Snake extends Game {
   }
 
   newHead() {
-    return this.move({...this.body[0]}, this.dir)
+    return this.move(this.body[0].clone(), this.dir)
   }
 
   move(p, by) {
-    p.x += by.x
-    if (p.x > this.board.cols) p.x = 0
-    if (p.x < 0) p.x = this.board.cols
-    p.y += by.y
-    if (p.y > this.board.rows) p.y = 0
-    if (p.y < 0) p.y = this.board.rows
-    return p
+    return this.wrapBounds(p.add(by))
   }
 
   appleAt(p) {
