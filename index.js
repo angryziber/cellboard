@@ -13,7 +13,10 @@ games.forEach(game => {
 })
 
 let currentGame
-gameSelect.onchange = () => startGame(games[gameSelect.selectedIndex])
+gameSelect.onchange = () => {
+  location.hash = '#' + gameSelect.selectedIndex
+  startGame(games[gameSelect.selectedIndex])
+}
 
 function startGame(game) {
   if (currentGame) currentGame.finish()
@@ -21,4 +24,5 @@ function startGame(game) {
   help.innerText = currentGame.help
 }
 
-startGame(games[0])
+gameSelect.selectedIndex = parseInt(location.hash.substring(1)) || 0
+startGame(games[gameSelect.selectedIndex])
