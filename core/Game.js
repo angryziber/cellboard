@@ -7,6 +7,7 @@ const {random, floor} = Math
  */
 export default class Game {
   score = 0
+  eventHandlers = []
 
   constructor(board, speed = 100) {
     this.board = board
@@ -14,7 +15,7 @@ export default class Game {
     this.speed = speed
   }
 
-  commonKeys = addEventListener('keydown', e => {
+  commonKeys = this.on('keydown', e => {
     switch (e.code) {
       case 'Space': return this.timer ? this.stop() : this.start()
       case 'Period': return this.speed -= 10
@@ -36,6 +37,16 @@ export default class Game {
   stop() {
     clearTimeout(this.timer)
     this.timer = undefined
+  }
+
+  on(type, handler) {
+    window.addEventListener(type, handler)
+    this.eventHandlers.push({type, handler})
+  }
+
+  finish() {
+    this.stop()
+    this.eventHandlers.forEach(e => window.removeEventListener(e.type, e.handler))
   }
 
   randomPositions(n) {

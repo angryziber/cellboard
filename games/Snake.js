@@ -8,7 +8,7 @@ export default class Snake extends Game {
   direction = v(1, 0)
   apples = this.randomPositions(30)
 
-  keys = addEventListener('keydown', e => {
+  keys = this.on('keydown', e => {
     switch (e.code) {
       case 'ArrowLeft': return this.direction = v(-1, 0)
       case 'ArrowRight': return this.direction = v(1, 0)

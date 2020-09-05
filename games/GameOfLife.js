@@ -7,17 +7,17 @@ export default class GameOfLife extends Game {
   drawing = false
 
   mouse = [
-    addEventListener('mousedown', e => {
+    this.on('mousedown', e => {
       if (!e.target.pos) return
       this.drawing = true
       this.drawNewCell(e.target.pos)
       this.stop()
     }),
-    addEventListener('mousemove', e => {
+    this.on('mousemove', e => {
       if (!this.drawing || !e.target.pos) return
       this.drawNewCell(e.target.pos)
     }),
-    addEventListener('mouseup', e => {
+    this.on('mouseup', e => {
       if (!this.drawing) return
       this.drawing = false
       this.start()

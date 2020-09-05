@@ -16,7 +16,7 @@ let currentGame
 gameSelect.onchange = () => startGame(games[gameSelect.selectedIndex])
 
 function startGame(game) {
-  if (currentGame) currentGame.stop()
+  if (currentGame) currentGame.finish()
   currentGame = new game(board).start()
   help.innerText = currentGame.help
 }
