@@ -1,7 +1,8 @@
 import Board from './core/Board.js'
 import Snake from './games/Snake.js'
+import GameOfLife from './games/GameOfLife.js'
 
-const games = [Snake]
+const games = [Snake, GameOfLife]
 
 const board = new Board(document.getElementById('board'), document.getElementById('score'))
 

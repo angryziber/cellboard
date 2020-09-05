@@ -1,3 +1,4 @@
+import {v} from './Vector.js'
 const {floor} = Math
 
 export default class Board {
@@ -11,7 +12,11 @@ export default class Board {
   generateCells(target, cols, rows) {
     this.cells = Array.from(Array(rows), (_, y) => {
       const row = this.addElement(target, 'row')
-      return Array.from(Array(cols), (_, x) => this.addElement(row, 'cell'))
+      return Array.from(Array(cols), (_, x) => {
+        const cell = this.addElement(row, 'cell')
+        cell.pos = v(x, y)
+        return cell
+      })
     })
   }
 
