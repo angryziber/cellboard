@@ -1,5 +1,6 @@
 import Game from '../core/Game.js'
 import {v} from '../core/Vector.js'
+const {random} = Math
 
 export default class Snake extends Game {
   snake = this.randomPositions(1)
@@ -49,8 +50,7 @@ export default class Snake extends Game {
 
   moveApples() {
     this.apples.forEach(a => {
-      const rx = Math.random()
-      const ry = Math.random()
+      const rx = random(), ry = random()
       this.move(a, v(rx > 0.9 ? 1 : rx < 0.1 ? -1 : 0, ry > 0.9 ? 1 : ry < 0.1 ? -1 : 0))
     })
   }
