@@ -3,11 +3,30 @@ import {v} from '../core/Vector.js'
 
 export default class GameOfLife extends Game {
   alive = this.randomPositions(100)
+  drawing = false
 
-  mouse = addEventListener('click', e => {
-    if (!e.target.pos) return
-    this.alive.push(e.target.pos)
-  })
+  mouse = [
+    addEventListener('mousedown', e => {
+      if (!e.target.pos) return
+      this.drawing = true
+      this.drawNewCell(e.target.pos)
+      this.stop()
+    }),
+    addEventListener('mousemove', e => {
+      if (!this.drawing || !e.target.pos) return
+      this.drawNewCell(e.target.pos)
+    }),
+    addEventListener('mouseup', e => {
+      if (!this.drawing) return
+      this.drawing = false
+      this.start()
+    })
+  ]
+
+  drawNewCell(c) {
+    this.alive.push(c)
+    this.drawAliveCells()
+  }
 
   gameTurn() {
     const next = []
@@ -19,7 +38,8 @@ export default class GameOfLife extends Game {
         if (a && (n === 2 || n === 3) || !a && n === 3) next.push(c)
       }
     }
-    (this.alive = next).forEach(c => this.board.set(c, 'filled'))
+    this.alive = next
+    this.drawAliveCells()
   }
 
   isAlive(c) {
@@ -32,5 +52,9 @@ export default class GameOfLife extends Game {
     return n(c.x - 1, c.y - 1) + n(c.x, c.y - 1) + n(c.x + 1, c.y - 1) +
            n(c.x - 1, c.y) + n(c.x + 1, c.y) +
            n(c.x - 1, c.y + 1) + n(c.x, c.y + 1) + n(c.x + 1, c.y + 1)
+  }
+
+  drawAliveCells() {
+    this.alive.forEach(c => this.board.set(c, 'filled'))
   }
 }
