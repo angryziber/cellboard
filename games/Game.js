@@ -16,5 +16,6 @@ export default class Game {
 
   stop() {
     clearTimeout(this.timer)
+    this.timer = undefined
   }
 }
