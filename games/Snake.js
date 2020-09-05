@@ -22,6 +22,14 @@ export default class Snake extends Game {
     return apples
   }
 
+  moveApples() {
+    this.apples.forEach(a => {
+      const rx = Math.random()
+      const ry = Math.random()
+      this.move(a, {x: rx > 0.9 ? 1 : rx < 0.1 ? -1 : 0, y: ry > 0.9 ? 1 : ry < 0.1 ? -1 : 0})
+    })
+  }
+
   step() {
     const head = this.newHead()
     this.body.unshift(head)
@@ -33,13 +41,17 @@ export default class Snake extends Game {
 
   newHead() {
     const h = {...this.body[0]}
-    h.x += this.dir.x
+    this.move(h, this.dir)
+    return h
+  }
+
+  move(h, by) {
+    h.x += by.x
     if (h.x > this.board.cols) h.x = 0
     if (h.x < 0) h.x = this.board.cols
-    h.y += this.dir.y
+    h.y += by.y
     if (h.y > this.board.rows) h.y = 0
     if (h.y < 0) h.y = this.board.rows
-    return h
   }
 
   appleAt(p) {
@@ -48,10 +60,12 @@ export default class Snake extends Game {
 
   eat(i) {
     this.apples.splice(i, 1)
+    this.score += 10
   }
 
   draw() {
     this.body.forEach(h => this.board.set(h, 'filled'))
     this.apples.forEach(a => this.board.set(a, 'apple'))
+    this.moveApples()
   }
 }
