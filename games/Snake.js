@@ -2,8 +2,9 @@ import Game from './Game.js'
 import {v} from '../Vector.js'
 
 export default class Snake extends Game {
-  body = this.randomPositions(1)
+  snake = this.randomPositions(1)
   direction = v(1, 0)
+  apples = this.randomPositions(30)
 
   keys = addEventListener('keydown', e => {
     switch (e.code) {
@@ -14,27 +15,23 @@ export default class Snake extends Game {
     }
   })
 
-  apples = this.randomPositions(30)
-
-  moveApples() {
-    this.apples.forEach(a => {
-      const rx = Math.random()
-      const ry = Math.random()
-      this.move(a, v(rx > 0.9 ? 1 : rx < 0.1 ? -1 : 0, ry > 0.9 ? 1 : ry < 0.1 ? -1 : 0))
-    })
+  gameTurn() {
+    this.moveApples()
+    this.moveSnake()
+    this.drawSnake()
+    this.drawApples()
   }
 
-  step() {
+  moveSnake() {
     const head = this.newHead()
-    this.body.unshift(head)
+    this.snake.unshift(head)
     const a = this.appleAt(head)
-    if (a >= 0) this.eat(a)
-    else this.body.pop()
-    this.draw()
+    if (a >= 0) this.eatApple(a)
+    else this.snake.pop()
   }
 
   newHead() {
-    return this.move(this.body[0].clone(), this.direction)
+    return this.move(this.snake[0].clone(), this.direction)
   }
 
   move(p, by) {
@@ -45,14 +42,24 @@ export default class Snake extends Game {
     return this.apples.findIndex(a => a.equals(p))
   }
 
-  eat(i) {
+  eatApple(i) {
     this.apples.splice(i, 1)
     this.addScore(10)
   }
 
-  draw() {
-    this.body.forEach(h => this.board.set(h, 'filled'))
+  moveApples() {
+    this.apples.forEach(a => {
+      const rx = Math.random()
+      const ry = Math.random()
+      this.move(a, v(rx > 0.9 ? 1 : rx < 0.1 ? -1 : 0, ry > 0.9 ? 1 : ry < 0.1 ? -1 : 0))
+    })
+  }
+
+  drawSnake() {
+    this.snake.forEach(h => this.board.set(h, 'filled'))
+  }
+
+  drawApples() {
     this.apples.forEach(a => this.board.set(a, 'apple'))
-    this.moveApples()
   }
 }

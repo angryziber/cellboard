@@ -1,10 +1,14 @@
 import {v} from '../Vector.js'
 const {random, floor} = Math
 
+/**
+ * Base abstract class that games can inherit.
+ * Method step() is called on every turn
+ */
 export default class Game {
   score = 0
 
-  constructor(board, speed = 80) {
+  constructor(board, speed = 100) {
     this.board = board
     this.board.updateScore(this.score)
     this.speed = speed
@@ -18,12 +22,12 @@ export default class Game {
     }
   })
 
-  step() {}
+  gameTurn() {}
 
   start() {
     this.timer = setTimeout(() => {
       this.board.clear()
-      this.step()
+      this.gameTurn()
       this.start()
     }, this.speed)
   }
