@@ -20,3 +20,7 @@ Game-agnostic keyboard keys:
 * . (Period) - increase speed
 * , (Comma) - decrease speed
 * Arrow keys - depending on game may be used for controlling
+
+## Future ideas
+
+Implement auto-playing.
