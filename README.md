@@ -8,4 +8,4 @@ A simple game board that can be used to practice implementing many cell-based ga
 * etc
 
 Code is pure modern JavaScript/ECMAScript, so will run in modern browsers only. 
-No transpilation needed.
+No transpilation needed. Zero dependencies.
