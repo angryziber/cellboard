@@ -10,6 +10,8 @@ A simple game board that can be used to practice implementing many cell-based ga
 * etc
 * **Pull requests with game implementations are welcome!**
 
+Can be used to teach programming to kids or adults.
+
 Code is pure modern JavaScript/ECMAScript, so will run in modern browsers only. 
 No transpilation needed. Zero dependencies.
 
