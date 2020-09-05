@@ -8,6 +8,13 @@ A simple game board that can be used to practice implementing many cell-based ga
 * Game of Life
 * Tetris
 * etc
+* **Pull requests with game implementations are welcome!**
 
 Code is pure modern JavaScript/ECMAScript, so will run in modern browsers only. 
 No transpilation needed. Zero dependencies.
+
+Game-agnostic keyboard keys:
+* Space - pause/resume
+* . (Period) - increase speed
+* , (Comma) - decrease speed
+* Arrow keys - depending on game may be used for controlling
