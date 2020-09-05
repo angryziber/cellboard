@@ -3,7 +3,7 @@ import Snake from './games/Snake.js'
 
 const games = [Snake]
 
-const board = new Board(document.getElementById('board'))
+const board = new Board(document.getElementById('board'), document.getElementById('score'))
 
 const gameSelect = document.getElementById('game')
 games.forEach(game => {

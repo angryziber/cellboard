@@ -1,11 +1,11 @@
 const {floor} = Math
 
 export default class Board {
-  constructor(target, cellSize = 20) {
+  constructor(target, score = this.addElement(target, 'score'), cellSize = 20) {
     this.cols = floor(target.clientWidth / cellSize)
     this.rows = floor(target.clientHeight / cellSize)
     this.generateCells(target, this.cols, this.rows)
-    this.score = this.addElement(target, 'score')
+    this.score = score
   }
 
   generateCells(target, cols, rows) {
