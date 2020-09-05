@@ -7,21 +7,14 @@ export default class Board {
     this.cols = floor(window.innerWidth / this.cellSize)
     this.rows = floor(window.innerHeight / this.cellSize - 1)
     this.generateCells(this.cols, this.rows)
+    this.score = this.createElement(this.board, 'score')
   }
 
   generateCells(cols, rows) {
-    this.cells = []
-    let row
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        if (!this.cells[y]) {
-          this.cells[y] = []
-          row = this.createElement(this.board, 'row')
-        }
-        this.cells[y][x] = this.createElement(row, 'cell')
-      }
-    }
-    this.score = this.createElement(this.board, 'score')
+    this.cells = Array.from(Array(rows), (_, y) => {
+      const row = this.createElement(this.board, 'row')
+      return Array.from(Array(cols), (_, x) => this.createElement(row, 'cell'))
+    })
   }
 
   createElement(parent, cls) {
