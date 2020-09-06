@@ -1,6 +1,6 @@
 import Game from '../core/Game.js'
 import {v} from '../core/Vector.js'
-const {random} = Math
+const {random, sign, abs} = Math
 
 export default class Snake extends Game {
   help = 'Use arrow keys to control the snake'
@@ -8,14 +8,24 @@ export default class Snake extends Game {
   direction = v(1, 0)
   apples = this.randomPositions(30)
 
-  keys = this.on('keydown', e => {
-    switch (e.code) {
-      case 'ArrowLeft': return this.direction = v(-1, 0)
-      case 'ArrowRight': return this.direction = v(1, 0)
-      case 'ArrowUp': return this.direction = v(0, -1)
-      case 'ArrowDown': return this.direction = v(0, 1)
-    }
-  })
+  events = [
+    this.on('keydown', e => {
+      switch (e.code) {
+        case 'ArrowLeft': return this.direction = v(-1, 0)
+        case 'ArrowRight': return this.direction = v(1, 0)
+        case 'ArrowUp': return this.direction = v(0, -1)
+        case 'ArrowDown': return this.direction = v(0, 1)
+      }
+    }),
+    this.on('click', e => {
+      if (!e.target.pos) return
+      const pos = e.target.pos
+      const head = this.snake[0]
+      const x = pos.x - head.x
+      const y = pos.y - head.y
+      this.direction = v(abs(x) > abs(y) ? sign(x) : 0, abs(y) > abs(x) ? sign(y) : 0)
+    })
+  ]
 
   gameTurn() {
     this.moveApples()
