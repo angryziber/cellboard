@@ -21,8 +21,8 @@ export default class Snake extends Game {
       const pos = e.target.pos
       if (!pos) return
       const head = this.snake[0]
-      if (this.direction.x) this.direction = v(0, sign(pos.y - head.y))
-      else if (this.direction.y) this.direction = v(sign(pos.x - head.x), 0)
+      if (this.direction.x && pos.y !== head.y) this.direction = v(0, sign(pos.y - head.y))
+      else if (this.direction.y && pos.x !== head.x) this.direction = v(sign(pos.x - head.x), 0)
     })
   ]
 
